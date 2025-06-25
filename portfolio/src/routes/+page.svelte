@@ -1,93 +1,77 @@
-<script>
-	import { onMount } from "svelte";
-	import { projects } from '$lib/projects';
+<script lang="ts">
+	import { projects } from '$lib/projects'
+	import ProjectCard from '$lib/ProjectCard.svelte';
+	import { onMount } from 'svelte';
 
-	let activeTag = 'None';
-	let tags = ['Systems Design', 'Game Programming', 'Tools Development'];
+	let activeTags: string[] = [];
+	const tags = ['Systems Design', 'Game Programming', 'Tools Development'];
+
+	function toggleTag(tag: string) {
+		if (activeTags.includes(tag)) {
+			activeTags = activeTags.filter(t => t !== tag);	// Remove the tag
+		} else {
+			activeTags = [...activeTags, tag];	// Add the tag
+		}
+	}
 
 	function filterProjects() {
-		return activeTag === 'None'
-		? projects
-		: projects.filter(p => p.tags.includes(activeTag));
+		if (activeTags.length === 0) {
+			return projects;
+		}
+		
+		return projects.filter(p =>
+			p.tags.some(t => activeTags.includes(t))
+		);
 	}
 </script>
 
-<style>
-	.layout {
-		display: flex;
-		height: 100vh;
-	}
+<!-- tag buttons -->
+<div class="tags">
+	{#each tags as tag}
+		<button
+			class:selected={activeTags.includes(tag)}
+			on:click={() => toggleTag(tag)}
+		>
+			{tag}
+		</button>
+	{/each}
+</div>
 
-	.navbar {
-		width: 200px;
-		background: #1e1e2f;
-		color: white;
-		padding: 1rem;
-	}
+<!-- project cards -->
+ <div class="project-list">
+	{#each filterProjects() as project}
+		<ProjectCard
+			title={project.title}
+			description={project.description}
+			tags={project.tags}
+		/>
+	{/each}
+ </div>
 
-	.content {
-		flex-grow: 1;
-		padding: 2rem;
-		overflow-y: auto;
-		background: #f4f4f7;
-	}
-
+ <style>
 	.tags {
 		display: flex;
 		gap: 1rem;
-		margin-bottom: 1.5rem;
+		margin-bottom: 2rem;
 	}
 
-	.tag {
+	button {
 		padding: 0.5rem 1rem;
-		border: none;
-		background: #ddd;
-		cursor: pointer;
-		border-radius: 5px;
-	}
-
-	.tag.active {
-		background: #1e1e2f;
-		color: white;
-	}
-
-	.project {
+		border: 1px solid #ccc;
+		border-radius: 6px;
 		background: white;
-		padding: 1rem;
-		margin-bottom: 1rem;
-		border-radius: 10px;
-		box-shadow: 0 2px 6px rba(0,0,0,0.1);
+		cursor: pointer;
 	}
-</style>
 
-<div class="layout">
-	<!-- vertical navbar -->
-	<nav class="navbar">
-		<h2>nate stuff :3</h2>
-		<ul></ul>
-	</nav>
+	button.selected {
+		background: #333;
+		color: white;
+		border-color: #333;
+	}
 
-	<!-- main stuff -->
-	 <main class="content">
-		<!-- tag toggles -->
-		 <div class="tags">
-			{#each tags as tag}
-				<button
-					class="tag {tag === activeTag ? 'active' : ''}"
-					on:click={() => activeTag = tag}
-				>
-					{tag}
-				</button>
-			{/each}	
-		 </div>
-
-		<!-- project list -->
-		{#each filterProjects() as project}
-		  	<div class="project">
-				<h3>{project.title}</h3>
-				<p>{project.description}</p>
-				<small>Tags: {project.tags.join(', ')}</small>
-			</div>
-		{/each}	
-	 </main>
-</div>
+	.project-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+ </style>
