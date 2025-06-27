@@ -1,77 +1,86 @@
 <script lang="ts">
-	import { projects } from '$lib/projects'
+	import { projects } from '$lib/projects';
+
+	import { selectedProject } from '$lib/stores';
+	
+	import { page } from '$app/stores';
+	import { navItems } from '$lib/stores';
+	
 	import ProjectCard from '$lib/ProjectCard.svelte';
-	import { onMount } from 'svelte';
+	import ProjectDetail from '$lib/ProjectLog.svelte';
+	import TagToggle from '$lib/TagToggle.svelte';
+	import { onDestroy, onMount } from 'svelte';
+    import ProjectLog from '$lib/ProjectLog.svelte';
 
 	let activeTags: string[] = [];
-	const tags = ['Systems Design', 'Game Programming', 'Tools Development'];
+	const tags = ['systems design', 'game programming', 'tools programming'];
 
 	function toggleTag(tag: string) {
-		if (activeTags.includes(tag)) {
-			activeTags = activeTags.filter(t => t !== tag);	// Remove the tag
-		} else {
-			activeTags = [...activeTags, tag];	// Add the tag
-		}
+		activeTags = activeTags.includes(tag)
+			? activeTags.filter(t => t !== tag)
+			: [...activeTags, tag];
 	}
 
-	function filterProjects() {
-		if (activeTags.length === 0) {
-			return projects;
-		}
-		
-		return projects.filter(p =>
-			p.tags.some(t => activeTags.includes(t))
+	$: filteredProjects = activeTags.length === 0
+		? projects
+		: projects.filter(p =>
+			activeTags.every(t =>
+				p.tags.some(tag => tag.toLowerCase() === t.toLowerCase())
+			)
 		);
-	}
+
+	let currentPath = '';
+	const unsubscribe = page.subscribe(($page) => {
+		currentPath = $page.url.pathname;
+	});
+
+	onDestroy(() => unsubscribe());
 </script>
 
-<!-- tag buttons -->
-<div class="tags">
-	{#each tags as tag}
-		<button
-			class:selected={activeTags.includes(tag)}
-			on:click={() => toggleTag(tag)}
-		>
-			{tag}
-		</button>
-	{/each}
+<div class="portfolio-grid">
+	<!-- me stuff (left nav) -->
+	<nav class="me-stuff">
+		{#each navItems as item}
+			<a href={item.href} class:active={currentPath === item.href}>
+				<span class="caret">{'>'}</span> {item.label}
+				{#if currentPath === item.href}
+					<span class="blinker">_</span>
+				{/if}
+			</a>
+		{/each}
+	</nav>
+
+	<!-- project list + filters (middle) -->
+	 <div>
+		<h3>project filters:</h3>
+		<div class="tags">
+			{#each tags as tag}
+				<TagToggle
+					{tag}
+					isActive={activeTags.includes(tag)}
+					toggle={toggleTag}
+				/>
+			{/each}
+		</div>
+
+		<h5>selected project: {$selectedProject?.title ?? 'NULL'}</h5>
+		<div class="project-list">
+			{#if filteredProjects.length > 0}
+				{#each filteredProjects as project}
+					<ProjectCard
+						title={project.title}
+						tags={project.tags}
+						projectData={project}
+					/>
+				{/each}
+			{:else}
+				<p>> no matching projects !</p>
+			{/if}
+		</div>
+	 </div>
+
+	 <!-- project logs (right) -->
+	  <div class="project-log-pane">
+		<ProjectLog />
+	  </div>
 </div>
-
-<!-- project cards -->
- <div class="project-list">
-	{#each filterProjects() as project}
-		<ProjectCard
-			title={project.title}
-			description={project.description}
-			tags={project.tags}
-		/>
-	{/each}
- </div>
-
- <style>
-	.tags {
-		display: flex;
-		gap: 1rem;
-		margin-bottom: 2rem;
-	}
-
-	button {
-		padding: 0.5rem 1rem;
-		border: 1px solid #ccc;
-		border-radius: 6px;
-		background: white;
-		cursor: pointer;
-	}
-
-	button.selected {
-		background: #333;
-		color: white;
-		border-color: #333;
-	}
-
-	.project-list {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
- </style>

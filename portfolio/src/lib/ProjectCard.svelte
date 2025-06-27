@@ -1,39 +1,38 @@
 <script lang="ts">
+	import { selectedProject } from "./stores";
+
 	export let title: string;
-	export let description: string;
 	export let tags: string[];
+	export let projectData: any; // can pass whole project object
+
+	function select() {
+		selectedProject.set(projectData);
+	}
 </script>
 
-<div class="project-card">
-	<h3>{title}</h3>
-	<p>{description}</p>
-	<div class="tags">
-		{#each tags as tag}
-			<span class="tag">{tag}</span>
-		{/each}
-	</div>
-</div>
+<button class="project-card" onclick={select}>
+	<h2>> {title}</h2>
+	<h5>{tags.join(', ')}</h5>
+</button>
 
-<style>
+<style lang="scss";>
+	@import '../styles/variables.scss';
+
 	.project-card {
-		background: white;
-		padding: 1rem;
-		margin-bottom: 1.5rem;
-		border-radius: 8px;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-	}
-	
-	.tags {
-		margin-top: 0.5rem;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-	}
+		display: block;
+		text-align: left;
+		border: 1px solid transparent;
+		border-radius: $radius;
+		padding: 0.5rem;
+		background: transparent;
+		color: $color-mossy;
+		font-family: $font-family;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: box-shadow 0.2s ease;
 
-	.tag {
-		background: #ddd;
-		padding: 0.2rem 0.6rem;
-		border-radius: 5px;
-		font-size: 0.75rem;
+		&:hover {
+			box-shadow: 0 0 8px $color-twilight;
+		}
 	}
 </style>
