@@ -32,7 +32,8 @@
 		transition: box-shadow 0.2s ease;
 
 		&:hover {
-			box-shadow: 0 0 8px $color-twilight;
+			color: $color-moonlight;
+			text-shadow: 0 0 5px $color-moonlight;
 		}
 	}
 </style>

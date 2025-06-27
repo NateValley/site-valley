@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { projects } from '$lib/projects';
 
-	import { selectedProject } from '$lib/stores';
+	import { selectedProject, navItems, tags } from '$lib/stores';
 	
 	import { page } from '$app/stores';
-	import { navItems } from '$lib/stores';
 	
 	import ProjectCard from '$lib/ProjectCard.svelte';
 	import ProjectDetail from '$lib/ProjectLog.svelte';
@@ -13,7 +12,7 @@
     import ProjectLog from '$lib/ProjectLog.svelte';
 
 	let activeTags: string[] = [];
-	const tags = ['systems design', 'game programming', 'tools programming'];
+	
 
 	function toggleTag(tag: string) {
 		activeTags = activeTags.includes(tag)
@@ -37,12 +36,17 @@
 	onDestroy(() => unsubscribe());
 </script>
 
+<header class="valley-header">
+	<p>> profile of: nathaniel valdenor</p>
+</header>
+
 <div class="portfolio-grid">
-	<!-- me stuff (left nav) -->
-	<nav class="me-stuff">
+	<!-- nav stuff (left nav) -->
+	<nav class="nav-stuff">
 		{#each navItems as item}
 			<a href={item.href} class:active={currentPath === item.href}>
-				<span class="caret">{'>'}</span> {item.label}
+				<span class="caret">{'>'}</span> 
+				{item.label}
 				{#if currentPath === item.href}
 					<span class="blinker">_</span>
 				{/if}

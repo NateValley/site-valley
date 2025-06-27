@@ -32,14 +32,26 @@ body::before {
 	z-index: 0;
 }
 
+.valley-header {
+	position: absolute;
+	top: 0;
+	left: 2%;
+	width: 100%;
+	text-align: left;
+	color: $color-mossy;
+	font-size: 1.5rem;
+	letter-spacing: 0.05em;
+}
+
 .portfolio-grid {
 	display: grid;
 	grid-template-columns: 200px 1fr 2fr;
 	gap: 1.5rem;
 	padding: 2rem;
+	padding-top: 6rem;
 }
 
-.me-stuff {
+.nav-stuff {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
@@ -58,9 +70,9 @@ body::before {
 		}
 
 		.blinker {
-			margin-left: 0.5rem;
+			margin-left: 0.1rem;
 			color: $color-dusk;
-			animation: blink 1s steps(2, start) infinite;
+			animation: blink 0.65s steps(2, start) infinite;
 		}
 
 		&:hover {
@@ -90,7 +102,8 @@ body::before {
 .tags {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	align-items: flex-start;
+	gap: 0.25rem;
 	margin-bottom: 1rem;
 }
 
@@ -112,4 +125,19 @@ body::before {
 a:hover, button:hover {
 	color: $color-twilight;
 	transition: color $transition;
+}
+
+@keyframes blink {
+	0% { opactity : 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes floaty {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-6px);
+	}
 }

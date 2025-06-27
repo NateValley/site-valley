@@ -18,15 +18,12 @@
 	.tag-toggle {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		text-align: left;
 
-		width: 100%;
-		max-width: 450px;
-		min-width: 400px;
+		width: 400px;
 
 		border: 1px solid transparent;
 		border-radius: $radius;
-		padding: 0.25rem 1.25rem;
 		background: transparent;
 		color: $color-mossy;
 		font-family: $font-family;
@@ -35,7 +32,12 @@
 		transition: box-shadow 0.2s ease, background $transition, color $transition;
 		
 		&:hover {
-			box-shadow: 0 0 8px $color-twilight;
+			color: $color-moonlight;
+			text-shadow: 0 0 5px $color-moonlight;
+		}
+
+		&.active {
+			color: $color-dusk;
 		}
 	}
 </style>
