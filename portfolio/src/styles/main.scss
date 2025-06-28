@@ -7,7 +7,7 @@
 }
 
 html {
-	font-size: 24px;
+	font-size: 20px;
 }
 
 body {
@@ -39,8 +39,16 @@ body::before {
 	width: 100%;
 	text-align: left;
 	color: $color-mossy;
-	font-size: 1.5rem;
+	font-size: 0.75rem;
 	letter-spacing: 0.05em;
+
+	border-bottom: 1px dashed;
+
+	.blinker {
+		margin-left: 0.1rem;
+		color: $color-mossy;
+		animation: blink 1s steps(2, start) infinite;
+	}
 }
 
 .portfolio-grid {
@@ -130,6 +138,12 @@ a:hover, button:hover {
 @keyframes blink {
 	0% { opactity : 1; }
 	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes blink-header {
+	0% { opactity : 1; }
+	50% { opacity: 0.5; }
 	100% { opacity: 1; }
 }
 
