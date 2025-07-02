@@ -29,34 +29,48 @@
 
 	<!-- project list + filters (middle) -->
 <div>
-	<h3>project filters:</h3>
-	<div class="tags">
-			{#each tags as tag}
-				<TagToggle
-					{tag}
-					isActive={activeTags.includes(tag)}
-					toggle={toggleTag}
-				/>
-			{/each}
-	</div>
+	<div class="portfolio-grid">
 
-	<h5>selected project: {$selectedProject?.title ?? 'NULL'}</h5>
-	<div class="project-list">
-			{#if filteredProjects.length > 0}
-				{#each filteredProjects as project}
-					<ProjectCard
-						title={project.title}
-						tags={project.tags}
-						projectData={project}
-					/>
-				{/each}
-			{:else}
-				<p>> no matching projects !</p>
-			{/if}
-	</div>
-</div>
+		<div class="project-media">
 
-	<!-- project logs (right) -->
-<div class="project-log-pane">
-		<ProjectLog />
+		</div>
+
+		<div class="filters-cards-column">
+			<div class="project-filters">
+				<h3>project filters:</h3>
+				<div class="tags">
+					{#each tags as tag}
+						<TagToggle
+							{tag}
+							isActive={activeTags.includes(tag)}
+							toggle={toggleTag}
+						/>
+					{/each}
+				</div>
+			</div>
+	
+			<div class="projects-group">
+				<h5>selected project: {$selectedProject?.title ?? 'NULL'}</h5>
+				<div class="project-list">
+					{#if filteredProjects.length > 0}
+						{#each filteredProjects as project}
+							<ProjectCard
+								title={project.title}
+								tags={project.tags}
+								projectData={project}
+							/>
+						{/each}
+					{:else}
+						<p>> no matching projects !</p>
+					{/if}
+				</div>
+			</div>	
+		</div>
+	
+		<!-- project logs (right) -->
+		<div class="project-log-pane">
+				<ProjectLog />
+		</div>
+
+	</div>
 </div>

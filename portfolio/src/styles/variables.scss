@@ -2,7 +2,7 @@ $color-bg: #0e0e0c;
 $color-mossy: #8fffa0;
 $color-ember: #ffb86b;
 $color-dusk: #a182c1;
-$color-twilight: #d7879f;
+$color-twilight: #fda6c0;
 $color-moonlight: #f5f7a1;
 $color-evergreen: #0b281b;
 $color-fog: #7a7a7a;
@@ -14,5 +14,6 @@ $font-size-lg: 1.125rem;  // 18px
 $font-size-xl: 1.25rem;   // 20px
 $font-size-xxl: 1.5rem;   // 24px
 
-$radius: 16px;	// border radius
-$transition: 0.2s ease;
+$border: 3px solid rgba($color-ember, 0.3);
+$radius: 1rem;	// border radius
+$transition: 0.3s ease;

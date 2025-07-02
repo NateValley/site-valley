@@ -29,7 +29,7 @@
 		font-family: $font-family;
 		font-size: 1rem;
 		cursor: pointer;
-		transition: box-shadow 0.2s ease;
+		transition: color $transition;
 
 		&:hover {
 			color: $color-moonlight;

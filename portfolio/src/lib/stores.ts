@@ -13,5 +13,6 @@ export const navItems = [
 export const tags = [
 	'systems design',
 	'game programming',
+	'multiplayer programming',
 	'tools programming'
 ];

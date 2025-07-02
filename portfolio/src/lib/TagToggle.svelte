@@ -20,7 +20,7 @@
 		justify-content: space-between;
 		text-align: left;
 
-		width: 400px;
+		min-width: 400px;
 
 		border: 1px solid transparent;
 		border-radius: $radius;

@@ -17,11 +17,10 @@
 <main>
 	<header class="valley-header">
 		<h2>> valley protocol<span class="blinker">_</span></h2>
-		<p>created by nathaniel berl valdenor :]</p>
+		<p>crafted by nathaniel berl valdenor :] game systems design</p>
 	</header>
 
-
-	<div class="portfolio-grid">
+	<div class="layout">
 		<!-- nav stuff (left nav) -->
 		<nav class="nav-stuff">
 			{#each navItems as item}
@@ -34,7 +33,9 @@
 				</a>
 			{/each}
 		</nav>
-		
-		<slot /> <!-- page content here -->
+
+		<div class="route-content">
+			<slot /> <!-- page content here -->
+		</div>
 	</div>
 </main>
