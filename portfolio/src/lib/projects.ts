@@ -18,83 +18,130 @@ export const projects: Project[] = [
 			// #region Systems Design
 			{
 				tag: 'systems design',
-				subheader: 'order interaction flow',
-				description: 'implemented and refactored how customer orders, table seating, and customer serving phases sync across players using Photon PUN 2 online network features'
+				subheader: 'order + serving phase architecture',
+				description: 'designed the customer order interaction flow, syncing table seating, orders, and serving logic across clients in a multiplayer setting'
 			},
 			{
 				tag: 'systems design',
-				subheader: 'customer logic',
-				description: 'built the customer behavior system and state machine- including seating, ordering, and responding the player interactions'
+				subheader: 'customer behavior state machine',
+				description: 'built a full customer logic system, managing states like waiting, ordering, eating, and leaving'
 			},
 			{
 				tag: 'systems design',
-				subheader: 'cosmetics system flow',
-				description: 'defined how cosmetic changes propagate across clients and reset between sessions'
+				subheader: 'seat & table system logic',
+				description: 'implemented dynamic seating and table systems, tracking customer assignments and order delivery across gameplay sessions'
 			},
 			{
 				tag: 'systems design',
-				subheader: 'player interaction template',
-				description: 'created an interface for all interactable objects in the game, supporting future content and keeping player logic modular'
+				subheader: 'randomized customer flow',
+				description: 'created logic for randomizing customer seating and order types to increase replayability and variety'
+			},
+			{
+				tag: 'systems design',
+				subheader: 'cosmetic propagation system',
+				description: 'defined and implemented how cosmetic data syncs across clients and resets between multiplayer sessions'
 			},
 			// #endregion
 			// #region Game Programming
 			{
 				tag: 'game programming',
-				subheader: 'character + movement',
-				description: 'helped build a reusable character class and contributed to movement & raycast behavior for players'
+				subheader: 'modular player manager',
+				description: 'implemented a centralized PlayerManager to handle player input, movement, and object interactions'
 			},
 			{
 				tag: 'game programming',
-				subheader: 'rebindable keys',
-				description: 'implemented custom input binding for keyboard support and accessibility'
+				subheader: 'rebindable control scheme',
+				description: 'developed a fully rebindable input system for customizable controls'
 			},
 			{
 				tag: 'game programming',
-				subheader: 'ui & menu interaction',
-				description: 'wrote support for menu keyboard navigation, scene transitions, and toggleable menus'
+				subheader: 'unified interaction interface',
+				description: 'created a base interaction system used by furniture, customers, and held items for consistent player interaction behavior'
 			},
 			{
 				tag: 'game programming',
-				subheader: 'furniture system',
-				description: 'standardized seat/table interactions and wrote code for spawning seats with saved configurations'
+				subheader: 'object pickup & handheld logic',
+				description: 'built a system for interacting with and transporting handheld objects like customer orders'
 			},
 			{
 				tag: 'game programming',
-				subheader: 'inventory & held items',
-				description: 'implemented a basic handheld inventory and item pickup/drop flow'
-			},
-			// #endregion
-			// #region Multiplayer Programming
-			{
-				tag: 'multiplayer programming',
-				subheader: 'core room flow',
-				description: 'built out join/create room logic, synced customers/seats/orders across clients'
+				subheader: 'customer AI & navigation',
+				description: 'integrated Unity NavMesh navigation and state transitions for responsive customer movement and behavior'
 			},
 			{
-				tag: 'multiplayer programming',
-				subheader: 'multiplayer sync',
-				description: 'created multiplayer syncing logic for gameobjects like customers and seats using Unity’s Netcode'
+				tag: 'game programming',
+				subheader: 'furniture spawning & placement',
+				description: 'developed furniture spawning logic using a GridManager and custom furniture placement tools'
 			},
 			{
-				tag: 'multiplayer programming',
-				subheader: 'multiplayer refactor',
-				description: 'refactored the whole multiplayer flow to better support synced states and reduce desync issues'
+				tag: 'game programming',
+				subheader: 'in-game HUD & interaction feedback',
+				description: 'assisted in creating the in-game HUD and supporting UI for customer conversations and interactions'
 			},
 			// #endregion
 			// #region Tools Programming
 			{
 				tag: 'tools programming',
-				subheader: 'scriptable order system',
-				description: 'made an Order scriptable object for easier management of baked goods, order types, and item categories'
+				subheader: 'data-driven orders & cosmetics',
+				description: 'created centralized databases for storing and managing orders and cosmetic item data'
 			},
 			{
 				tag: 'tools programming',
-				subheader: 'gamemanager utilities',
-				description: 'organized functions and variables for phase switching, player references, and item stock syncing'
+				subheader: 'grid-based furniture placement tools',
+				description: 'developed editor-facing systems to handle furniture placement using café-bound grids'
+			},
+			{
+				tag: 'tools programming',
+				subheader: 'spawn managers for dynamic furniture',
+				description: 'built modular managers for spawning and tracking furniture like tables and seats at runtime'
+			},
+			// #endregion
+			// #region Multiplayer Programming
+			{
+				tag: 'multiplayer programming',
+				subheader: 'lobby creation & matchmaking',
+				description: 'implemented a join/create lobby system using Photon PUN 2'
+			},
+			{
+				tag: 'multiplayer programming',
+				subheader: 'full network state sync',
+				description: 'synchronized player movement, customer data, furniture, orders, and cosmetics across networked players'
+			},
+			{
+				tag: 'multiplayer programming',
+				subheader: 'RPC-heavy network communication',
+				description: 'authored numerous RPCs (Remote Procedure Calls) to coordinate real-time multiplayer events and actions'
+			},
+			{
+				tag: 'multiplayer programming',
+				subheader: 'customer data sync architecture',
+				description: 'used decoupled CustomerData components to sync customer behavior without tight coupling between systems'
+			},
+			{
+				tag: 'multiplayer programming',
+				subheader: 'networked furniture interaction',
+				description: 'enabled full multiplayer furniture placement and interaction through Photon-compatible spawning logic'
+			},
+			// #endregion
+			// #region Misc.
+			{
+				tag: 'misc.',
+				subheader: 'lead programmer role',
+				description: 'oversaw systems architecture, implementation planning, and team programming coordination'
+			},
+			{
+				tag: 'misc.',
+				subheader: 'steam store content writing',
+				description: 'authored the official Pawfee Bean Steam page, showcasing gameplay features, multiplayer systems, and cozy café vibes'
+			},
+			{
+				tag: 'misc.',
+				subheader: 'ui development support',
+				description: 'helped implement the in-game HUD and customer conversation interface elements'
 			},
 			// #endregion
 		],
-		tags: ['systems design', 'game programming', 'multiplayer programming', 'tools programming'],
+		tags: ['systems design', 'game programming', 'tools programming', 'multiplayer programming', 'misc.'],
 		mediaUrls: []
 	},
 	{
