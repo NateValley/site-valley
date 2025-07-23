@@ -19,11 +19,10 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: null,
-			precompress: false
+			fallback: 'index.html'
 		}),
 		paths: {
-			base: '/site-valley',
+			base: '/site-valley'
 		}
 	}
 };
