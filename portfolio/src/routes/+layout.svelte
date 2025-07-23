@@ -1,4 +1,5 @@
 <script>
+	
 	import '../styles/main.scss';
 	import { navItems } from '$lib/stores';
 	
