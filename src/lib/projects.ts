@@ -2,7 +2,12 @@ export interface Project {
 	title: string;
 	logs: Log[];
 	tags: string[],
-	mediaUrls: string[]
+	media: MediaItem[]
+}
+
+interface MediaItem {
+	url: string;
+	header: string;
 }
 
 interface Log {
@@ -142,20 +147,34 @@ export const projects: Project[] = [
 			// #endregion
 		],
 		tags: ['systems design', 'game programming', 'tools programming', 'multiplayer programming', 'misc.'],
-		mediaUrls: []
+		media: [
+			{
+				url: 'https://via.placeholder.com/800x450/4a5d4a/ffffff?text=Pawfee+Bean+Screenshot',
+				header: 'GAMEPLAY SCREENSHOT'
+			},
+			{
+				url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+				header: 'MULTIPLAYER DEMO'
+			}
+		]
 	},
 	{
 		title: 'another thing',
 		logs: [
 		],
 		tags: ['systems design', 'game programming'],
-		mediaUrls: []
+		media: [
+			{
+				url: 'https://via.placeholder.com/600x400/5a6a5a/ffffff?text=Another+Thing+Image',
+				header: 'CONCEPT ART'
+			}
+		]
 	},
 	{
 		title: 'some secret third thing',
 		logs: [
 		],
 		tags: ['game programming', 'tools programming'],
-		mediaUrls: []
+		media: []
 	}
 ]

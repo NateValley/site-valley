@@ -113,9 +113,9 @@ body::before {
 	display: grid;
 
 	grid-template-columns: 
-		minmax(600px, 1.5fr) 
-		minmax(500px, 1fr) 
-		minmax(600px, 1.5fr);
+		minmax(500px, 1.5fr) 
+		minmax(600px, 1fr) 
+		minmax(500px, 1.5fr);
 
 
 	gap: 1.5rem;
@@ -128,7 +128,7 @@ body::before {
 .project-media {
 	display: flex;
 	gap: 1.5rem;
-	max-height: 400px;
+	height: 70vh;
 	overflow: hidden;
 
 	max-width: 100%;
@@ -137,7 +137,7 @@ body::before {
 	border-radius: $radius;
 	animation: shimmer 3s ease-in-out infinite;
 
-	padding: 1rem;
+	padding: 1.25rem;
 
 	img, video {
 		max-width: 100%;
@@ -151,6 +151,10 @@ body::before {
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 0.5rem;
+	height: 70vh;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: $color-ember transparent;
 
 	padding-left: 1rem;
 }
@@ -184,7 +188,7 @@ body::before {
 }
 
 .project-log-pane {
-	min-height: 400px;
+	height: 70vh;
 
 	display: flex;
 	flex-direction: column;

@@ -51,7 +51,7 @@
 	@import '../styles/variables.scss';
 
 	.project-log {
-		max-height: 70vh;
+		height: 70vh;
 		overflow-y: auto;
 		scrollbar-width: thin;
 		scrollbar-color: $color-ember transparent;
