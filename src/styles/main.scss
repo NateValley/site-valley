@@ -8,11 +8,26 @@
 	font-family: $font-family;
 	color: $color-mossy;
 	background: $color-bg;
+	
+	// Base scaling variables
+	--base-scale: 1;
+	--font-scale: 1;
+	--space-scale: 1;
 }
 
 body, html {
-	font-size: 22px;
+	font-size: clamp(16px, 1.5vw, 22px);
 	overflow-x: hidden;
+	
+	// Scale up for 1440p displays to maintain visual size consistency with 1080p
+	@media (min-width: 2400px) and (min-height: 1350px) {
+		font-size: clamp(21px, 2vw, 29px); // ~1.33x scaling
+	}
+	
+	// Alternative scaling for high-DPI displays
+	@media (min-resolution: 144dpi) {
+		font-size: clamp(18px, 1.8vw, 25px);
+	}
 }
 
 body::before {
@@ -30,12 +45,11 @@ body::before {
 
 .layout {
 	display: grid;
-	grid-template-columns: 250px 1fr;
-	gap: 1.5rem;
-	padding: 1.5rem 1rem;
+	grid-template-columns: minmax(200px, 250px) 1fr;
+	gap: clamp(0.75rem, 2vw, 1.5rem);
+	padding: clamp(0.75rem, 2vw, 1.5rem) clamp(0.5rem, 1.5vw, 1rem);
 	max-width: 100%;
 	overflow-x: hidden;
-	
 }
 
 .valley-header {
@@ -62,16 +76,22 @@ body::before {
 	border: $border;
 	animation: shimmer 3s ease-in-out infinite;
 	border-radius: $radius;
-	padding: 1rem;
+	padding: clamp(0.75rem, 1.5vw, 1rem);
 
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 
+	@media (max-width: 768px) {
+		position: relative;
+		min-width: 150px;
+		padding: 0.75rem;
+	}
+
 	a {
 		color: $color-mossy;
 		text-decoration: none;
-		font-size: 1rem;
+		font-size: clamp(0.875rem, 1.2vw, 1rem);
 		display: flex;
 		align-items: center;
 		position: relative;
@@ -102,33 +122,53 @@ body::before {
 .route-content {
 	display: grid;
 	grid-template-columns: 1fr 1.5fr;
-	gap: 1.5rem;
+	gap: clamp(0.75rem, 2vw, 1.5rem);
 
 	max-width: 1600px;
 	width: 100%;
-	padding-right: 2rem;
+	padding-right: clamp(0.5rem, 2vw, 2rem);
+
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		padding-right: 0;
+	}
 }
 
 .portfolio-grid {
 	display: grid;
 
 	grid-template-columns: 
-		minmax(500px, 1.5fr) 
-		minmax(600px, 1fr) 
-		minmax(500px, 1.5fr);
+		minmax(400px, 1.7fr) 
+		minmax(480px, 1.2fr) 
+		minmax(420px, 2fr);
 
-
-	gap: 1.5rem;
+	gap: clamp(0.75rem, 2vw, 1.5rem);
 	width: 100%;
 	max-width: 100%;
 	align-items: start;
-	
+
+	@media (max-width: 1400px) {
+		grid-template-columns: 
+			minmax(350px, 1.5fr) 
+			minmax(440px, 1.1fr) 
+			minmax(380px, 1.8fr);
+	}
+
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		gap: 0.75rem;
+	}
 }
 
 .project-media {
 	display: flex;
-	gap: 1.5rem;
-	height: 70vh;
+	gap: clamp(0.75rem, 2vw, 1.5rem);
+	height: clamp(50vh, 60vh, 70vh);
 	overflow: hidden;
 
 	max-width: 100%;
@@ -137,12 +177,22 @@ body::before {
 	border-radius: $radius;
 	animation: shimmer 3s ease-in-out infinite;
 
-	padding: 1.25rem;
+	padding: clamp(0.75rem, 1.5vw, 1rem);
 
 	img, video {
 		max-width: 100%;
 		height: auto;
 		border-radius: $radius;
+	}
+
+	@media (max-width: 1200px) {
+		height: 40vh;
+		margin-bottom: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		height: 35vh;
+		padding: 0.75rem;
 	}
 }
 
@@ -151,12 +201,41 @@ body::before {
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 0.5rem;
-	height: 70vh;
+	height: clamp(50vh, 60vh, 70vh);
 	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-color: $color-ember transparent;
+	
+	&::-webkit-scrollbar {
+		width: 4px;
+		height: 4px;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background: $color-ember;
+		border-radius: 2px;
+	}
+	
+	&::-webkit-scrollbar-button {
+		display: none;
+	}
 
-	padding-left: 1rem;
+	padding: clamp(0.75rem, 1.5vw, 1rem);
+
+	@media (max-width: 1200px) {
+		height: auto;
+		min-height: 40vh;
+		margin-bottom: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		padding: 0.75rem;
+		min-height: 35vh;
+	}
 }
 
 .tags {
@@ -188,7 +267,7 @@ body::before {
 }
 
 .project-log-pane {
-	height: 70vh;
+	height: clamp(50vh, 60vh, 70vh);
 
 	display: flex;
 	flex-direction: column;
@@ -196,6 +275,15 @@ body::before {
 	width: 100%;
 	min-width: 0;
 	max-width: 100%;
+
+	@media (max-width: 1200px) {
+		height: auto;
+		min-height: 40vh;
+	}
+
+	@media (max-width: 768px) {
+		min-height: 35vh;
+	}
 }
 
 a:hover, button:hover {
@@ -219,4 +307,81 @@ a:hover, button:hover {
 	0% { border-color: $color-ember; }
 	50% { border-color: lighten($color-ember, 10%); }
 	100% { border-color: $color-ember; }
+}
+
+@media (min-width: 2400px) and (min-height: 1350px) {
+	:root {
+		--base-scale: 1.15;
+		--font-scale: 1.1;
+		--space-scale: 1.2;
+	}
+
+	body, html {
+		font-size: clamp(18px, 1.7vw, 24px);
+	}
+
+	.layout {
+		grid-template-columns: minmax(calc(280px * var(--base-scale)), calc(320px * var(--base-scale))) 1fr;
+		gap: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale));
+		padding: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale)) calc(clamp(0.5rem, 1.5vw, 1rem) * var(--space-scale));
+	}
+
+	.portfolio-grid {
+		grid-template-columns: 
+			minmax(calc(400px * var(--base-scale)), 1.8fr)
+			minmax(calc(450px * var(--base-scale)), 1.2fr)
+			minmax(calc(500px * var(--base-scale)), 2fr);
+		gap: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale));
+	}
+
+	.nav-stuff {
+		min-width: calc(280px * var(--base-scale));
+		padding: calc(clamp(0.75rem, 1.5vw, 1rem) * var(--space-scale));
+		
+		a {
+			font-size: calc(clamp(0.875rem, 1.2vw, 1rem) * var(--font-scale));
+		}
+	}
+
+	.route-content {
+		gap: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale));
+		padding-right: calc(clamp(0.5rem, 2vw, 2rem) * var(--space-scale));
+		max-width: 2000px;
+	}
+
+	.project-media, .filters-cards-column {
+		padding: calc(clamp(0.75rem, 1.5vw, 1rem) * var(--space-scale));
+		gap: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale));
+	}
+
+	.valley-header {
+		font-size: calc(0.75rem * var(--font-scale));
+	}
+}
+
+@media (max-width: 480px) {
+	.layout {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+		padding: 0.75rem 0.5rem;
+	}
+
+	.nav-stuff {
+		margin-bottom: 1rem;
+		min-width: unset;
+		width: 100%;
+	}
+
+	.route-content {
+		grid-template-columns: 1fr;
+		padding-right: 0;
+	}
+
+	.valley-header {
+		font-size: 0.7rem;
+		
+		h2 {
+			font-size: 1.1rem;
+		}
+	}
 }

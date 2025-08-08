@@ -69,15 +69,21 @@
 					{/each}
 				</div>
 			{:else}
-				<div class="no-media">
-					<p>> select a project to view media</p>
-				</div>
+				{#if $selectedProject}
+					<div class="no-media-section">
+						<h3 class="log-tag">> NO MEDIA FOUND :[</h3>
+					</div>
+				{:else}
+					<div class="no-media">
+						<h3>> select a project to view</h3>
+					</div>
+				{/if}
 			{/if}
 		</div>
 
 		<div class="filters-cards-column">
 			<div class="project-filters">
-				<h3>project filters:</h3>
+				<h3 class="filters-header">project filters:</h3>
 				<div class="tags">
 					{#each tags as tag}
 						<TagToggle
@@ -121,14 +127,34 @@
 	.project-media {
 		.no-media {
 			color: $color-mossy;
-			padding: 0.5rem;
+			font-family: $font-family;
 			
-			p {
-				margin: 0;
-				font-family: $font-family;
+			h3 {
 				font-size: 1rem;
+				font-weight: normal;
 			}
 		}
+	}
+
+	.filters-header {
+		margin-top: 0;
+		margin-bottom: 0.5rem;
+		font-weight: bold;
+	}
+
+	.section {
+		margin-top: 1rem;
+		padding-top: 0.5rem;
+		border-top: 2px dotted $color-ember;
+	}
+
+	.log-tag {
+		color: $color-ember;
+	}
+
+	.no-media-section {
+		margin-top: 1rem;
+		padding-top: 0.5rem;
 	}
 
 	.media-container {
@@ -141,6 +167,24 @@
 		padding: 0.5rem;
 		scrollbar-width: thin;
 		scrollbar-color: $color-ember transparent;
+		
+		&::-webkit-scrollbar {
+			width: 4px;
+			height: 4px;
+		}
+		
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		
+		&::-webkit-scrollbar-thumb {
+			background: $color-ember;
+			border-radius: 2px;
+		}
+		
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
 	}
 
 	.media-item {

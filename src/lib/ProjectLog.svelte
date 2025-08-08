@@ -20,7 +20,7 @@
 
 {#if $selectedProject}
 	<div class="project-log">
-		<h1>{$selectedProject.title.toUpperCase()}</h1>
+		<h1 class="project-title">{$selectedProject.title.toUpperCase()}</h1>
 		<h5 class="project-tags">{$selectedProject.tags.join(', ').toUpperCase()}</h5>
 	
 		{#if !$selectedProject.logs?.length}
@@ -43,7 +43,7 @@
 	</div>
 {:else}
 	<div class="project-log">
-		<p>> select a project to view</p>
+		<h3>> select a project to view</h3>
 	</div>
 {/if}
 
@@ -56,31 +56,107 @@
 		scrollbar-width: thin;
 		scrollbar-color: $color-ember transparent;
 		
+		&::-webkit-scrollbar {
+			width: 4px;
+			height: 4px;
+		}
+		
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		
+		&::-webkit-scrollbar-thumb {
+			background: $color-ember;
+			border-radius: 2px;
+		}
+		
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
+		
 		border: $border;
 		animation: shimmer 6s ease-in-out infinite;
 		border-radius: $radius;
-		padding: 1rem;
+		padding: clamp(0.75rem, 1.5vw, 1rem);
 		font-family: $font-family;
 
 		color: $color-mossy;
+		
+		h3 {
+			font-size: 1rem;
+			font-weight: normal;
+		}
+	}
+
+	.project-title {
+		white-space: nowrap;
+		width: 100%;
+		margin: 0;
+		font-size: 1.5rem;
+		display: block;
+		
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: thin;
+		scrollbar-color: $color-moonlight transparent;
+		max-width: 100%;
+		padding-bottom: 0.25rem;
+		
+		&::-webkit-scrollbar {
+			width: 4px;
+			height: 4px;
+		}
+		
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		
+		&::-webkit-scrollbar-thumb {
+			background: $color-moonlight;
+			border-radius: 2px;
+		}
+		
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
 	}
 
 	.project-tags {
 		color: $color-ember;
 
 		display: flex;
-		gap: 0.5rem; // optional: space between tags
+		gap: 0.5rem;
 		white-space: nowrap;
-		padding-bottom: 0.5rem;
+		padding-bottom: 0.25rem;
+		margin-top: 0.25rem;
+		margin-bottom: 0.25rem;
 
 		overflow-x: auto;
 		overflow-y: hidden;
 
 		scrollbar-width: thin;
 		scrollbar-color: $color-ember transparent;
+		
+		&::-webkit-scrollbar {
+			width: 4px;
+			height: 4px;
+		}
+		
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		
+		&::-webkit-scrollbar-thumb {
+			background: $color-ember;
+			border-radius: 2px;
+		}
+		
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
 
-		height: auto; // let it expand to fit content unless you have a reason for fixed height
-		max-width: 100%; // ensures it doesn't overflow the container
+		height: auto;
+		max-width: 100%;
 	}
 
 	.section {
