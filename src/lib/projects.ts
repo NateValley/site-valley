@@ -147,28 +147,14 @@ export const projects: Project[] = [
 			// #endregion
 		],
 		tags: ['systems design', 'game programming', 'tools programming', 'multiplayer programming', 'misc.'],
-		media: [
-			{
-				url: 'https://via.placeholder.com/800x450/4a5d4a/ffffff?text=Pawfee+Bean+Screenshot',
-				header: 'GAMEPLAY SCREENSHOT'
-			},
-			{
-				url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-				header: 'MULTIPLAYER DEMO'
-			}
-		]
+		media: []
 	},
 	{
 		title: 'another thing',
 		logs: [
 		],
 		tags: ['systems design', 'game programming'],
-		media: [
-			{
-				url: 'https://via.placeholder.com/600x400/5a6a5a/ffffff?text=Another+Thing+Image',
-				header: 'CONCEPT ART'
-			}
-		]
+		media: []
 	},
 	{
 		title: 'some secret third thing',

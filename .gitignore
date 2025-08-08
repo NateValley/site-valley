@@ -25,3 +25,7 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# Claude Code settings
+.claude/
+CLAUDE.md
