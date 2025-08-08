@@ -150,17 +150,77 @@ export const projects: Project[] = [
 		media: []
 	},
 	{
-		title: 'another thing',
+		title: 'Super Cloud',
 		logs: [
+			// #region Systems Design
+			{
+				tag: 'systems design',
+				subheader: 'post unlock system',
+				description: 'designed a post system that acted as mission triggers, unlocking script files and gameplay progression through user interaction'
+			},
+			{
+				tag: 'systems design',
+				subheader: 'site-based content switching',
+				description: 'implemented a tag- and ID-based architecture to filter posts per in-game websites'
+			},
+			// #endregion
+			// #region Game Programming
+			{
+				tag: 'game programming',
+				subheader: 'post interaction + mission logic',
+				description: 'created and wired mission unlock events to in-game post buttons, tying data to player actions'
+			},
+			// #endregion
+			// #region Tools Programming
+			{
+				tag: 'tools programming',
+				subheader: 'post authoring workflow',
+				description: 'developed a pipeline to populate game content through a spreadsheet-backed post database, streamlining iteration for narrative and design teams'
+			},
+			{
+				tag: 'tools programming',
+				subheader: 'post prefab + data hook-up',
+				description: 'connected UI prefab components to a centralized scriptable object database and made them runtime-readable via C#'
+			},
+			// #endregion
 		],
-		tags: ['systems design', 'game programming'],
+		tags: ['systems design', 'game programming', 'tools programming'],
 		media: []
 	},
 	{
-		title: 'some secret third thing',
+		title: 'Nuts 4 Eggs',
 		logs: [
+			// #region Systems Design
+			{
+				tag: 'systems design',
+				subheader: 'egg launch & interaction flow',
+				description: 'refactored the player controller to support normalized physics-based movement and modular egg interaction logic, including grab, release, and reset behavior'
+			},
+			{
+				tag: 'systems design',
+				subheader: 'egg launch trajectory system',
+				description: 'improved egg launch mechanics by implementing velocity-based interpolation, ensuring consistent trajectory and reliable collision resets'
+			},
+			{
+				tag: 'systems design',
+				subheader: 'egg/enemy AI state logic',
+				description: 'contributed to enemy behavior by integrating egg/enemy interaction states into a reactive NavMesh driven loop, supporting movement and interaction patterns'
+			},
+			// #endregion
+			// #region Game Programming
+			{
+				tag: 'game programming',
+				subheader: 'UI state machine',
+				description: 'built a state machine-based UI system to handle navigation across main menu, options, and credits with clean separation of states'
+			},
+			{
+				tag: 'game programming',
+				subheader: 'egg holding mechanics',
+				description: 'implemented smooth egg grabbing and releasing functionality with support for hold positioning and dynamic velocity transfer'
+			}
+			// #endregion
 		],
-		tags: ['game programming', 'tools programming'],
+		tags: ['systems design', 'game programming'],
 		media: []
 	}
 ]
