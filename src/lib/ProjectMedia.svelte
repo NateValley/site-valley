@@ -10,10 +10,42 @@
 
 	async function loadSteam(appid: string) {
 		if (steamCache[appid]) return steamCache[appid];
-		const r = await fetch(`${base}/api/steam/${appid}`);
-		const j = await r.json();
-		steamCache[appid] = j;
-		return j;
+		try {
+			// Try CORS proxy first for live Steam API data
+			const corsProxy = 'https://api.allorigins.win/raw?url=';
+			const steamUrl = `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=basic`;
+			const r = await fetch(`${corsProxy}${encodeURIComponent(steamUrl)}`);
+			
+			if (!r.ok) throw new Error('CORS proxy failed');
+			
+			const data = await r.json();
+			const appData = data[appid];
+			
+			if (appData?.success && appData?.data) {
+				steamCache[appid] = {
+					ok: true,
+					header_image: appData.data.header_image,
+					short_description: appData.data.short_description
+				};
+			} else {
+				throw new Error('Steam API returned no data');
+			}
+			
+			return steamCache[appid];
+		} catch (error) {
+			// Fallback to static JSON files
+			try {
+				const r = await fetch(`${base}/steam/${appid}.json`);
+				if (!r.ok) throw new Error('Static steam data not found');
+				const j = await r.json();
+				steamCache[appid] = j;
+				return j;
+			} catch (fallbackError) {
+				// Final fallback
+				steamCache[appid] = { ok: false };
+				return { ok: false };
+			}
+		}
 	}
 
 	const open = (url: string) => window.open(url, '_blank', 'noopener,noreferrer');
@@ -47,7 +79,7 @@
 							<div class="steam-content">
 								<img
 									src={s.header_image ?? ''}
-									alt={s.name ?? m.header}
+									alt={headerParts.mainText}
 									class="steam-image"
 									loading="lazy"
 								/>
