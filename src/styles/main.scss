@@ -139,9 +139,9 @@ body::before {
 	display: grid;
 
 	grid-template-columns: 
-		minmax(400px, 1.7fr) 
-		minmax(480px, 1.2fr) 
-		minmax(420px, 2fr);
+		minmax(480px, 2fr) 
+		minmax(480px, 2fr) 
+		minmax(480px, 2fr);
 
 	gap: clamp(0.75rem, 2vw, 1.5rem);
 	width: 100%;
@@ -178,6 +178,7 @@ body::before {
 	animation: shimmer 3s ease-in-out infinite;
 
 	padding: clamp(0.75rem, 1.5vw, 1rem);
+	padding-right: 0;
 
 	img, video {
 		max-width: 100%;
@@ -328,9 +329,9 @@ a:hover, button:hover {
 
 	.portfolio-grid {
 		grid-template-columns: 
-			minmax(calc(400px * var(--base-scale)), 1.8fr)
-			minmax(calc(450px * var(--base-scale)), 1.2fr)
-			minmax(calc(500px * var(--base-scale)), 2fr);
+			minmax(calc(480px * var(--base-scale)), 2fr)
+			minmax(calc(480px * var(--base-scale)), 2fr)
+			minmax(calc(480px * var(--base-scale)), 2fr);
 		gap: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale));
 	}
 
@@ -352,6 +353,10 @@ a:hover, button:hover {
 	.project-media, .filters-cards-column {
 		padding: calc(clamp(0.75rem, 1.5vw, 1rem) * var(--space-scale));
 		gap: calc(clamp(0.75rem, 2vw, 1.5rem) * var(--space-scale));
+	}
+
+	.project-media {
+		padding-right: 0;
 	}
 
 	.valley-header {

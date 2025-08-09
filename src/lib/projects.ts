@@ -5,15 +5,15 @@ export interface Project {
 	media: MediaItem[]
 }
 
-interface MediaItem {
-	url: string;
-	header: string;
-}
-
 interface Log {
 	tag: string;
 	subheader: string;
 	description: string;
+}
+
+interface MediaItem {
+	url: string;
+	header: string;
 }
 
 export const projects: Project[] = [
@@ -147,7 +147,13 @@ export const projects: Project[] = [
 			// #endregion
 		],
 		tags: ['systems design', 'game programming', 'tools programming', 'multiplayer programming', 'misc.'],
-		media: []
+		media: [
+			{ header: 'steam page', url: 'https://store.steampowered.com/app/3683680/Pawfee_Bean/' },
+			{ header: `multiplayer customer behavior sync\n(early feb 2025)`, url: '/media/pawfee/early_feb.gif' },
+			{ header: `spawning/serving pawfee\n(late feb 2025)`, url: '/media/pawfee/late_feb.gif' },
+			{ header: `multiplayer items and customer orders sync\n(early march 2025)`, url: '/media/pawfee/early_march.gif' },
+			{ header: `pitch deck\n(late may 2025)`, url: 'https://docs.google.com/presentation/d/e/2PACX-1vQGpvSmz4mEUefpp3i3yYGAcmWjcZ52gnuGwOfeDx20nT2sonDYVV1rkoUV_eJzqkvQkcNAg-TRjUsh/pubembed?start=false&loop=false&delayms=3000' }
+		]
 	},
 	{
 		title: 'Super Cloud',
@@ -222,5 +228,5 @@ export const projects: Project[] = [
 		],
 		tags: ['systems design', 'game programming'],
 		media: []
-	}
+	},
 ]
